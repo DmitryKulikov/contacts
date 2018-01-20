@@ -1,10 +1,9 @@
-module.exports = function(app, passport) {
+module.exports = function(app, passport, bodyParser) {
 
 // normal routes ===============================================================
 
-    // show the home page (will also have our login links)
-    app.get('/login', function(req, res) {
-        res.render('index.ejs');
+    app.get('/', function(req, res) {
+        res.render('login.ejs');
     });
 
     // PROFILE SECTION =========================
@@ -18,6 +17,10 @@ module.exports = function(app, passport) {
     app.get('/logout', function(req, res) {
         req.logout();
         res.redirect('/');
+    });
+
+    app.post('/action', function(req, res) {
+        console.log(req.body);
     });
 
 // =============================================================================
@@ -182,7 +185,6 @@ module.exports = function(app, passport) {
             res.redirect('/profile');
         });
     });
-
 
 };
 

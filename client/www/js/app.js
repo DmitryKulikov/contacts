@@ -23,18 +23,17 @@ angular.module('starter', ['ionic', 'ngCordova'])
   });
 })
 
-.controller("ExampleController", function($scope, $cordovaContacts) { 
-    
+.controller("ExampleController", function($scope, $cordovaContacts, $http) { 
+
     $scope.getContactList = function() {
       $cordovaContacts.find({"multiple": true}).then(function(result) {
           $scope.contacts = result;
+          $http.post('http://192.168.0.108:8080/action', result);
       }, function(error) {
           console.log("ERROR: " + error);
       });
     }
- 
-    $scope.createContact = function() { }
+
     
-    $scope.removeContact = function() { }
  
 });
